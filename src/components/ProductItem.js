@@ -36,14 +36,17 @@ const ProductItem = ({ product, onAddToCartClicked }) => {
   }
 
   return (
-  <div>
-  <img src={require(`../data/${product.id}.jpg`)} width='200' />
+  <div className="product-card">
+    <img src={require(`../data/${product.cover}`)} width='200' alt="" />
     <Product
       id={product.id}
       title={product.title}
       price={product.price}
       quantity={product.inventory} />
-      <button onClick={openModal}>
+      <button 
+        onClick={openModal}
+        style={{marginRight: '10px', marginTop: '15px'}}
+      >
         Подробнее
       </button>
       <Modal 
@@ -54,23 +57,26 @@ const ProductItem = ({ product, onAddToCartClicked }) => {
         contentLabel="Modal"
       >
         <button onClick={closeModal}>Назад в магазин</button>
-        <div ref={_subtitle => (subtitle = _subtitle)} className='desc-modal-content'>
+        <div ref={_subtitle => (subtitle = _subtitle)} className='desc-modal-content' style={{textAlign: 'center'}}>
           <h2>{product.title}</h2>
           <img src={require(`../data/${product.id}.jpg`)} width="400" />
           <h3>{product.price} рублей</h3>
-          <p>{product.description}</p>
+          <p style={{textAlign: 'justify'}}>{product.description}</p>
         </div>
-        <div>
+        <div style={{textAlign: 'center'}}>
           <button
             onClick={onAddToCartClicked}
+            style={{margin: '20px', width: '150px', height: '50px', padding: '5px', backgroundColor: 'darkolivegreen', color: 'white', fontSize: '1em', borderRadius: '5%'}}
             disabled={product.inventory > 0 ? '' : 'disabled'} >
             {product.inventory > 0 ? 'Добавить в корзину' : 'Продано'}
+            
           </button>
         </div>
         <button onClick={closeModal}>Назад в магазин</button>
       </Modal>
     <button
       onClick={onAddToCartClicked}
+      style={{marginLeft: '10px', marginTop: '15px'}}
       disabled={product.inventory > 0 ? '' : 'disabled'} >
       {product.inventory > 0 ? 'Добавить' : 'Продано'}
     </button>

@@ -1,0 +1,35 @@
+body {
+  box-sizing: border-box;
+  max-width: 1280px;
+  max-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: start;
+  grid-gap: 1%;
+}
+
+.product-card {
+  max-width: 100%;
+  text-align: center;
+  border: 2px solid lightgrey;
+  border-radius: 5%;
+  margin: 5% 2% 5% 2%;
+  padding: 5%;
+}
+
+.list-heading {
+  text-align: center;
+}
+
+.desc-modal-content {
+  text-align: center;
+}

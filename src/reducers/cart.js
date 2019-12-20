@@ -1,10 +1,10 @@
 import {
   ADD_TO_CART,
   CHECKOUT_REQUEST,
-  CHECKOUT_FAILURE
+  CHECKOUT_FAILURE,
 } from '../constants/ActionTypes'
 
-const initialState = {
+export const initialState = {
   addedIds: [],
   quantityById: {}
 }
@@ -15,7 +15,7 @@ const addedIds = (state = initialState.addedIds, action) => {
       if (state.indexOf(action.productId) !== -1) {
         return state
       }
-      return [ ...state, action.productId ]
+      return [ ...state, action.productId ] 
     default:
       return state
   }

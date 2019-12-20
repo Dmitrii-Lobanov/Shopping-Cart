@@ -18,13 +18,12 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-const Cart  = ({ products, total, onCheckoutClicked }) => {
+const Cart  = ({ products, total }) => {
   const [payButton, setPayButton] = useState('Оплатить');
 
   const hasProducts = products.length > 0
   const nodes = hasProducts ? (
     products.map(product =>
-      //<img src={} />
       <Product
         title={product.title}
         price={product.price}
@@ -33,7 +32,7 @@ const Cart  = ({ products, total, onCheckoutClicked }) => {
       />
     )
   ) : (
-    <em>Добавленные в корзину товары</em>
+    <em>Добавьте товары в корзину</em>
   )
 
   var subtitle;
@@ -43,7 +42,6 @@ const Cart  = ({ products, total, onCheckoutClicked }) => {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
     subtitle.style.color = '#000';
   }
 
@@ -56,13 +54,18 @@ const Cart  = ({ products, total, onCheckoutClicked }) => {
   }
 
   return (
-    <div>
+    <div style={{textAlign: 'center'}}>
       <h3>Корзина</h3>
       <div>{nodes}</div>
-      <p>Итого: {total} рублей</p>
-      <button onClick={openModal}
-        disabled={hasProducts ? '' : 'disabled'}>
-        К оплате
+        <hr />
+        <p>Итого: {total} рублей</p>
+  
+      <button 
+        onClick={openModal}
+        disabled={hasProducts ? '' : 'disabled'}
+        style={{margin: '20px', width: '150px', height: '50px', padding: '5px', backgroundColor: 'darkolivegreen', fontSize: '1em', borderRadius: '5%', color: 'white'}}
+        >
+        {hasProducts ? 'К оплате' : 'Выберите товар'}
       </button>
       <Modal 
         isOpen={modalIsOpen}
@@ -72,11 +75,17 @@ const Cart  = ({ products, total, onCheckoutClicked }) => {
         contentLabel="Modal"
       >
         <button onClick={closeModal}>Назад в магазин</button>
-        <div ref={_subtitle => (subtitle = _subtitle)} className='desc-modal-content'>
+        <div 
+          ref={_subtitle => (subtitle = _subtitle)} 
+          className='desc-modal-content'>
           <h2>Корзина</h2>
           <div>{nodes}</div>
+          <hr />
           <p>Итого: {total} рублей</p>
-          <button onClick={onPayButton}>
+          <button 
+            onClick={onPayButton}
+            style={{margin: '20px', width: '150px', height: '50px', padding: '5px', backgroundColor: 'darkolivegreen', fontSize: '1em', borderRadius: '5%', color: 'white'}}
+          >
             {payButton}
           </button>
         </div>

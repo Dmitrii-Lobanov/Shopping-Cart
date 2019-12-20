@@ -1,21 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { addToCart } from '../actions'
+import { addToCart, removeFromCart } from '../actions'
 import { getVisibleProducts } from '../reducers/products'
 import ProductItem from '../components/ProductItem'
 import ProductsList from '../components/ProductsList'
 
 const ProductsContainer = ({ products, addToCart }) => (
-  <ProductsList title="Products">
-    {products.map(product =>
-      <ProductItem
-        key={product.id}
-        product={product}
-        quantity={product.quantity}
-        onAddToCartClicked={() => addToCart(product.id)} />
-    )}
-  </ProductsList>
+  <div>
+    <ProductsList title="Products">
+      {products.map(product =>
+        <ProductItem
+          key={product.id}
+          product={product}
+          quantity={product.quantity}
+          onAddToCartClicked={() => addToCart(product.id)}
+          onRemoveClicked={() => removeFromCart(product.id)}
+           />
+      )}
+    </ProductsList>
+  </div>
 )
 
 ProductsContainer.propTypes = {
